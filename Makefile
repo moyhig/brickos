@@ -196,9 +196,9 @@ tag::
 SOURCES = boot demo kernel lib util
 HEADERS = include 
 
-EXTRA_DIST = Doxy* doc h8300.rcx
+EXTRA_DIST = Doxy* doc h8300.rcx configure
 
-DIST_COMMON =  README ChangeLog CONTRIBUTORS LICENSE VERSION Makefile* NEWS TODO
+DIST_COMMON =  README ChangeLog CONTRIBUTORS LICENSE VERSION Makefile* NEWS TODO README.use
 
 
 #
