@@ -9,7 +9,7 @@ BUILDING_HOST_UTILS = true
 include ../Makefile.common
 
 # Define here the executable files to be build
-EXECUTABLES    = fontdesign 
+EXECUTABLES    = fontdesign dll firmdl3
 UTILITY_SCRIPT = merge-map
 
 # Needed for DOS/WIN32 platforms
