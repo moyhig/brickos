@@ -62,13 +62,14 @@ install-stamp: ${pkgincludedir} ${pkgexampledir} ${pkglibdir} \
 	@cat config.h >>config.h.dist
 	cp -f config.h.dist ${pkgincludedir}/config.h
 	@cat ../Makefile.common | sed -e 's/.BRICKOS_ROOT..lib/(LIBDIR)/g' | \
-	                         sed -e 's/^all:.*//' | \
-	                         sed -e 's/.BRICKOS_ROOT..include/(INCDIR)/g' | \
-							 sed -e 's/.BRICKOS_ROOT..util/(LIBDIR)/g' >../Makefile.common.dist
+	                          sed -e 's/^all.depend:.*//' | \
+	                          sed -e 's/.BRICKOS_ROOT..include/(INCDIR)/g' | \
+	                          sed -e 's/^BRICKOS_ROOT=.*/BRICKOS_ROOT="not used when installed"/g' | \
+				  sed -e 's/.BRICKOS_ROOT..util/(LIBDIR)/g' >../Makefile.common.dist
 	@cat ../Makefile.user | sed -e 's/.BRICKOS_ROOT..lib/(LIBDIR)/g' | \
-                             sed -e 's/.BRICKOS_ROOT..include/(INCDIR)/g' | \
-                             sed -e 's/.BRICKOS_ROOT..boot/(INCDIR)/g' | \
-							 sed -e 's/.BRICKOS_ROOT..util/(LIBDIR)/g' >../Makefile.user.dist
+                                sed -e 's/.BRICKOS_ROOT..include/(INCDIR)/g' | \
+                                sed -e 's/.BRICKOS_ROOT..boot/(INCDIR)/g' | \
+		 	        sed -e 's/.BRICKOS_ROOT..util/(LIBDIR)/g' >../Makefile.user.dist
 	cp -f ../Makefile.user.dist ${pkglibdir}/Makefile.user
 	@echo "" >>../Makefile.common.dist
 	@echo "INCDIR = ${pkgincludedir}" >>../Makefile.common.dist
