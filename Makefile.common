@@ -49,7 +49,7 @@ BRICKOS_ROOT=/home/stephen/sourceforge/brickos/brickos
 #
 #  test to ensure that user has run configure before building
 #
-all:: ensureConfigured
+all depend:: ensureConfigured
 
 ensureConfigured:
 	@if [ ! -f $(BRICKOS_ROOT)/.configured.flg ]; then \

@@ -27,7 +27,7 @@ $(MKIMG): mkimg.o srec.o
 fastdl.h: $(MKIMG) fastdl.srec
 	./$(MKIMG) fastdl.srec > $@
 
-depend:
+depend::
 	@# nothing to do here but do it silently
 
 install: install-stamp 

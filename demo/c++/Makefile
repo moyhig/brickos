@@ -30,7 +30,7 @@ all:: $(PROGRAMS)
 .depend: *.[cC]
 	$(MAKEDEPEND) *.[cC] > .depend
 
-depend: .depend
+depend:: .depend
 	@# nothing to do here but do it silently
 
 #  NOTE: --format=1 is not supported on Linux ([ce]tags from emacs2[01] packages)

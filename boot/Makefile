@@ -28,7 +28,7 @@ include ../Makefile.common
 .depend: $(BRICKOS_ROOT)/kernel/*.c
 	$(MAKEDEPEND) $(BRICKOS_ROOT)/kernel/*.c > .depend
 
-depend: .depend
+depend:: .depend
 
 install: install-stamp
 	@# nothing to do here but do it silently

@@ -47,7 +47,7 @@ realclean: clean
 .depend:
 	$(CC) -M $(CFLAGS) -c $(SRCS1) $(SRCS2) >.depend
 
-depend: .depend
+depend:: .depend
 	@# nothing to do here but do it silently
 
 install: install-stamp
