@@ -41,7 +41,7 @@ EXT=
 CC=cc
 CFLAGS=-O2 -Wall
 MAKEDEPEND=$(CC) -M
-BRICKOS_ROOT=/home/stephen/sourceforge/brickos/brickos
+BRICKOS_ROOT=
 # -------------------------------------------------------
 #  END-configuration insert  (do not remove this line)
 #
