@@ -1,3 +1,10 @@
+2002-10-11  Stephen M Moraco <stephmo@users.sourceforge.net>
+
+  * First pass at cleaning up Makefiles by normalizing
+    subdirectory handling, and adding install targets.
+  * There are a couple more Makefiles to update before thie
+  	is done.
+
 2002-09-25  Stephen M Moraco <stephmo@users.sourceforge.net>
 
   * Awakened API doc for Kernel Developers
