@@ -69,7 +69,7 @@ ifdef BUILDING_HOST_UTILS
 #   defines for build of native compiled utilities
 # ----------------------------------------------------------------------------
 
-CFLAGS=-O2 -Wall
+CFLAGS+=-O2 -Wall
 
 else  # ifndef BUILDING_HOST_UTILS
 
