@@ -85,6 +85,10 @@ $(TARGET2):  $(OBJS2)
 ../%$(EXT): %.c
 	$(CC) -o $@ $< $(CFLAGS)
 
+# remove debug symbols
+strip:
+	strip $(ALL_TARGETS)
+
 .PHONY: depend all clean realclean install
 
 

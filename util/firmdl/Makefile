@@ -14,7 +14,6 @@ MAN1 = firmdl3.1
 
 ALL_TARGETS = ../$(FIRMDL3) $(MKIMG) 
 
-
 all:: fastdl.h $(ALL_TARGETS)
 	@# nothing to do here but do it silently
 
@@ -50,6 +49,10 @@ clean:
 realclean: clean
 	rm -f fastdl.h $(ALL_TARGETS)
 	@rm -f install-stamp
+
+# remove debug symbols
+strip:
+	strip $(ALL_TARGETS)
 
 .PHONY: realclean clean install depend all
 
