@@ -57,6 +57,10 @@ install-stamp: $(LIBRARY)
 	cp -f $? ${pkglibdir}/$?
 	@touch $@
 
+uninstall:
+	@rm -f install-stamp
+
+.PHONY: all promote-stamp depend clean realclean install install-stamp uninstall
 
 ### --------------------------------------------------------------------------
 ###                    End of FILE: lib/mint/Makefile

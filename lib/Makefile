@@ -11,11 +11,11 @@ SUBDIRS=c \
 		c++
 
 # targets which get passed to these directories
-all install clean realclean depend::
+all install clean realclean depend uninstall::
 	@for i in $(SUBDIRS); do $(MAKE) $(MFLAGS) -C $$i $@ || exit 2; done
 
 # target(s) which get acted upon here (or not)
-tag uninstall::
+tag::
 	@# nothing to do here but do it silently
 
 ### --------------------------------------------------------------------------
