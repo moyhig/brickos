@@ -139,7 +139,7 @@ $(KERNEL).coff: $(KOBJECTS)
 
 # how to build srec kernel (for download)
 %.srec: %.coff %.map
-	$(OBJCOPY) -I coff-h8300 -O srec $(NEED_ZERO_PADDING) --change-section-address .text.hi=0x$(shell grep ___bss$$ $*.map | cut -f1 -d" ") $*.coff $*.srec
+	$(OBJCOPY) -I coff-h8300 -O srec $(NEED_ZERO_PADDING) $*.coff $*.srec
 	chmod a-x $*.srec
 
 # how to make map files
