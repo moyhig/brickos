@@ -24,6 +24,12 @@ export BRICKOS_ROOT=$(shell cd . && pwd)/
 # 
 SUBDIRS=util lib boot demo doc
 
+#  if new configuration tool installed force it to be used once
+all::
+	@if [ configure -nt .configured.flg ]; then \
+		rm -f .configured.flg; \
+	fi
+
 all install::
 	@for i in $(SUBDIRS) ; do $(MAKE) $(MFLAGS) -C $$i $@ || exit 2 ; done
 
