@@ -1,4 +1,5 @@
 #!/bin/bash -p
+# $Id$
 #
 # Generator for brickOS host-OS-dependend Makefile variables
 #
