@@ -5,6 +5,7 @@
 ### --------------------------------------------------------------------------
 
 # name for the brickOS kernel
+# #LIBDIR#         ###   DO NOT REMOVE THIS LINE  ###
 KERNEL=../boot/brickOS
 
 PROGRAMS=helloworld.lx rover.lx linetrack.lx robots.lx c++.lx sound.lx trailerbot.lx
