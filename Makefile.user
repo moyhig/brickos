@@ -45,13 +45,19 @@ endif
 %.dis2: %.dmap %.dis
 	$(MERGEMAP) $*.dmap $*.dis > $@
         
-#  How to make srec files of dynamic executables
-%.ds1: %.o $(DOBJECTS) $(DYNAMIC_LDS)
-	$(LD) $(DLDFLAGS) $*.o $(DOBJECTS) $(LIBS) -o $@ -Ttext $(BASE1)
+#  How to make coff files of dynamic executables (twice, for makelx)
+%.dc1: %.o $(DOBJECTS) $(DYNAMIC_LDS)
+	$(LD) $(DLDFLAGS) $*.o $(DOBJECTS) $(LIBS) -o $@ --oformat coff-h8300 -Ttext $(BASE1)
 
-#  How to make srec files of dynamic executables
-%.ds2: %.o $(DOBJECTS) $(DYNAMIC_LDS)	
-	$(LD) $(DLDFLAGS) $*.o $(DOBJECTS) $(LIBS) -o $@ -Ttext $(BASE2)
+%.dc2: %.o $(DOBJECTS) $(DYNAMIC_LDS)	
+	$(LD) $(DLDFLAGS) $*.o $(DOBJECTS) $(LIBS) -o $@ --oformat coff-h8300 -Ttext $(BASE2)
+
+#  How to make srec files from coff files (twice, for makelx)
+%.ds2: %.dc2
+	$(OBJCOPY) -I coff-h8300 -O symbolsrec $< $@
+
+%.ds1: %.dc1
+	$(OBJCOPY) -I coff-h8300 -O symbolsrec $< $@
 
 %.lx: %.ds1 %.ds2
 	$(MAKELX) $*.ds1 $*.ds2 $@
