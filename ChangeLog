@@ -1,3 +1,12 @@
+2002-10-11  Stephen M Moraco <stephmo@users.sourceforge.net>
+
+  * 2nd pass at cleaning up Makefiles
+    - added build/install of all docs as targets separate
+	  from normal brickOS build/install
+	- enabled 'make tag' from top Makefile
+  * install of headers and brickOS itself is all that remains
+    to be done in next make update
+
 2002-10-11  Joseph A Woolley <jawoolley@users.sourceforge.net>
 
   * Added locked_increment and locked_decrement to inc/dec an
