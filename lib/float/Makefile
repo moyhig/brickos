@@ -21,7 +21,7 @@ LIBRARY   = lib$(LIBTARGET).a
 OBJECTS = $(SOURCES:.s=.o)
 
 
-all: promote-stamp
+all:: promote-stamp
 	@# nothing to do here but do it silently
 
 promote-stamp: $(LIBRARY)

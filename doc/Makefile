@@ -23,7 +23,7 @@ include ../Makefile.common
 doc: $(DOCBASE).html $(DOCBASE2).html
 
 # nothing to do for these (documents not built when running top-level build)
-all install uninstall depend tag:
+all install uninstall depend tag::
 	@# nothing to do here, but do this nothing silently
 
 docs-install: ${pkghtmldir} chkbuild

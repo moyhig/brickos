@@ -15,7 +15,7 @@ MAN1 = firmdl3.1
 ALL_TARGETS = ../$(FIRMDL3) $(MKIMG) 
 
 
-all: fastdl.h $(ALL_TARGETS)
+all:: fastdl.h $(ALL_TARGETS)
 	@# nothing to do here but do it silently
 
 $(MKIMG): mkimg.o srec.o

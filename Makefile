@@ -31,7 +31,7 @@ depend tag clean realclean uninstall::
 	@for i in $(SUBDIRS) ; do $(MAKE) $(MFLAGS) NODEPS=yes -C $$i $@ || exit 2 ; done
 
 realclean:: clean
-	rm -f tags TAGS
+	rm -f tags TAGS *.bak
 
 doc docs-install::
 	$(MAKE) $(MFLAGS) -C doc $@
@@ -252,6 +252,8 @@ distdir: $(DISTFILES)
 	@find $(DISTDIR) -type d -depth -name 'CVS' -exec rm -rf {} \; 
 	@find $(DISTDIR) -type f -name '.cvs*' -exec rm -f {} \; 
 	@find $(DISTDIR) -type f -name '.dep*' -exec rm -f {} \; 
+
+include Makefile.common		# for the ocnfiguration check
 
 ### --------------------------------------------------------------------------
 ###                      End of top-level brickOS Makefile
