@@ -26,7 +26,7 @@ all clean realclean depend::
 
 depend:: .depend
 
-install:
+install uninstall:
 	@# nothing to do here but do it silently
 
 #  NOTE: --format=1 is not supported on Linux ([ce]tags in emacs2[01] packages)

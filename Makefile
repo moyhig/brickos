@@ -24,7 +24,7 @@ export BRICKOS_ROOT=$(shell cd . && pwd)/
 # 
 SUBDIRS=util lib boot demo doc
 
-all install::
+all install uninstall::
 	@for i in $(SUBDIRS) ; do $(MAKE) $(MFLAGS) -C $$i $@ || exit 2 ; done
 
 depend tag clean realclean::
@@ -35,10 +35,6 @@ realclean:: clean
 
 doc docs-install::
 	$(MAKE) $(MFLAGS) -C doc $@
-
-uninstall::
-	$(MAKE) $(MFLAGS) -C boot $@
-	$(MAKE) $(MFLAGS) -C util $@
 
 
 #  API generation support using Doxygen

@@ -15,7 +15,7 @@ all install clean realclean depend::
 	@for i in $(SUBDIRS); do $(MAKE) $(MFLAGS) -C $$i $@ || exit 2; done
 
 # target(s) which get acted upon here (or not)
-tag::
+tag uninstall::
 	@# nothing to do here but do it silently
 
 ### --------------------------------------------------------------------------
