@@ -84,7 +84,7 @@ install-stamp: ${pkgincludedir} ${pkgexampledir} ${pkglibdir} \
 	@touch $@
 
 clean::
-	rm -f ../Makefile.user.dist ../Makefile.common.dist ../demo/Makefile.dist config.h.dist
+	rm -f ../Makefile.user.dist ../Makefile.common.dist ../demo/Makefile.dist ../demo/c++/Makefile.dist config.h.dist
 
 
 #!/bin/bash -p
