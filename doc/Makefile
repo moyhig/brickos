@@ -31,9 +31,12 @@ docs-install: ${pkghtmldir} chkbuild
 	cp -f ${TEXT_DOCS} ${pkgdocdir} 
 	cp -r images ${pkghtmldir}
 	cp -f *.html ${pkghtmldir}
-	cp HOWTO/*.html ${pkghtmldir}
-	@# oops copied extra file, remove it
-	@rm -f $(pkghtmldir)/t1.html
+	mkdir -p ${pkghtmldir}/HOWTO
+	cp HOWTO/*.html ${pkghtmldir}/HOWTO
+	cp HOWTO.html ${pkghtmldir}/HOWTO
+	@# oops copied extra files, remove them
+	@rm -f $(pkghtmldir)/HOWTO/t1.html
+	@rm -f $(pkghtmldir)/HOWTO.html
 
 chkbuild:
 	@if [ ! -f $(DOCBASE).html -o ! -f $(DOCBASE2).html ] ;then \
