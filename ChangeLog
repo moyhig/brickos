@@ -1,5 +1,6 @@
 2003-02-13  Stephen M Moraco <stephmo@users.sourceforge.net>
 
+  * Applied Patch 651692: Add setjmp/longjmp (ANSI C support)
   * Applied Patch 673995: Patch brickos 0.2.6.09 for *BSD
 
 2003-01-11  Ed Manlove <emanlove@users.sourceforge.net>
