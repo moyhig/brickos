@@ -1,3 +1,7 @@
+2003-02-24  Stephen M Moraco <stephmo@users.sourceforge.net>
+
+  * Adjusted motor direction display on LCD (fix brake display)
+
 2003-02-16  Mark Riley <markril@users.sourceforge.net>
 
   * Improvements to high memory Patch 638513
