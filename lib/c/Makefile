@@ -40,7 +40,7 @@ $(LIBRARY): $(OBJECTS)
 	$(AR) -sq $@ $(OBJECTS)
 
 .depend: $(SOURCES)
-	makedepend -f - $(SOURCES) >.depend
+	$(MAKEDEPEND) $(SOURCES) > .depend
 
 depend:: .depend
 	@# nothing to do here but do it silently
