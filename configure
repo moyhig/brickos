@@ -163,7 +163,7 @@ then
 	mv $CURR_MAKEFILE $PRIOR_MAKEFILE
 	mv $NEW_MAKEFILE $CURR_MAKEFILE
 else
-	#rm -f $NEW_MAKEFILE
+	rm -f $NEW_MAKEFILE
 	echo "configure: no configuration changes needed, nothing done."
 	echo ""
 fi
