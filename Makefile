@@ -24,10 +24,10 @@ export BRICKOS_ROOT=$(shell cd . && pwd)/
 # 
 SUBDIRS=util lib boot demo doc
 
-all install uninstall::
+all install::
 	@for i in $(SUBDIRS) ; do $(MAKE) $(MFLAGS) -C $$i $@ || exit 2 ; done
 
-depend tag clean realclean::
+depend tag clean realclean uninstall::
 	@for i in $(SUBDIRS) ; do $(MAKE) $(MFLAGS) NODEPS=yes -C $$i $@ || exit 2 ; done
 
 realclean:: clean
