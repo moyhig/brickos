@@ -198,8 +198,8 @@ HEADERS = include
 
 EXTRA_DIST = Doxy* doc h8300.rcx configure
 
-DIST_COMMON =  README ChangeLog CONTRIBUTORS LICENSE VERSION Makefile* NEWS TODO README.use
-
+DIST_COMMON =  README ChangeLog CONTRIBUTORS LICENSE VERSION \
+               Makefile* NEWS TODO README.use README.usb
 
 #
 # The following 'dist' target code is taken from a makefile 
