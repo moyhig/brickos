@@ -1,3 +1,8 @@
+2004-01-02  Henner Zeller <hzeller@users.sourceforge.net>
+  * Fixed #835433, #766169, #766168 
+  * add sem_timedwait() 
+  * the counter for locked_{inc|dec}rement is a new type: atomic_t
+  
 2003-03-02  Paolo Masetti <paolom@users.sourceforge.net>
 
   * Fixed util\makefile(s). Now "make strip" works.
