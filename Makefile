@@ -39,7 +39,7 @@ depend tag clean realclean uninstall::
 realclean:: clean
 	rm -f tags TAGS *.bak
 
-doc docs-install::
+docs-build docs-install::
 	$(MAKE) $(MFLAGS) -C doc $@
 
 
@@ -166,9 +166,9 @@ Doxyfile-kern-report: .Doxyfile-kern-doneflag
 #
 #  make all API documentation
 #
-api-doc: html-c html-c++ html-kern
+api-docs-build: html-c html-c++ html-kern
 
-docs: doc api-doc
+docs: docs-build api-docs-build
 
 #
 #  make distribution files for all API documentation

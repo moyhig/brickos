@@ -20,7 +20,7 @@ TEXT_DOCS = AvailableDocs.txt \
 include ../Makefile.common
 
 #  out default target when doing make in this directory
-doc: $(DOCBASE).html $(DOCBASE2).html
+docs-build: $(DOCBASE).html $(DOCBASE2).html
 
 # nothing to do for these (documents not built when running top-level build)
 all install uninstall depend tag::
