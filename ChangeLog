@@ -1,3 +1,11 @@
+2002-09-04  Stephen M Moraco <stephmo@users.sourceforge.net>
+
+  * First wave of internal comment updates for Doxygen
+     extraction of API documentation
+	This round included (1) upgrade of Doxygen control files
+	(2) revision of file brief descriptions, and (3) excluding
+	of __asm__ code blocks from the generated HTML API docs.
+
 2002-09-01  Stephen M Moraco <stephmo@users.sourceforge.net>
 
   * Remove legOS from Makefiles and doxygen files
