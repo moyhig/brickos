@@ -11,7 +11,7 @@ KERNEL=brickOS
 KSOURCES=kmain.c mm.c systime.c tm.c semaphore.c conio.c lcd.c \
 	 lnp-logical.c lnp.c remote.c program.c vis.c battery.c\
          timeout.c dkey.c dmotor.c dsensor.c dsound.c swmux.c\
-         critsec.c setjmp.c
+         atomic.c critsec.c setjmp.c
 
 KERNEL_TARGETS = $(KERNEL).srec \
                  $(KERNEL).lds
