@@ -41,6 +41,9 @@ install-stamp: $(ALL_TARGETS) $(MAN1)
 	cp -f $(MAN1) $(mandir)/man1/$(MAN1)
 	@touch $@
 
+uninstall:
+	rm -f $(mandir)/man1/$(MAN1) $(bindir)/$(FIRMDL3) install-stamp
+
 clean:
 	rm -f *.o *~ *.bak
 

@@ -24,7 +24,7 @@ SUBDIRS = dll-src firmdl
 all:: $(TARGETS)
 	@# nothing to do here but do it silently
 
-all clean depend install realclean::
+all clean depend install realclean uninstall::
 	@for i in $(SUBDIRS) ; do $(MAKE) $(MFLAGS) NODEPS=yes -C $$i $@ || exit 2 ; done
 
 # remove debug symbols

@@ -29,6 +29,7 @@ pkglibdir = $(libdir)/${PACKAGE}
 pkgincludedir = $(includedir)/${PACKAGE}
 pkgdocdir = $(docdir)/${PACKAGE}
 pkghtmldir = $(pkgdocdir)/html
+pkgexampledir = $(pkgdocdir)/examples
 
 #
 # DJGPP does not define OSTYPE

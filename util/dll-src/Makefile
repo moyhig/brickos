@@ -67,6 +67,9 @@ install-stamp: $(ALL_TARGETS)
 	cp -f $(MAN1) $(mandir)/man1/$(MAN1)
 	@touch $@
 
+uninstall:
+	rm -f install-stamp $(mandir)/man1/$(MAN1) $(bindir)/$(EXE1)
+
 $(TARGET1):  $(OBJS1)
 	$(CC) -o $@ $(OBJS1) $(LIBS) $(CFLAGS)
 

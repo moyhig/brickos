@@ -36,6 +36,10 @@ realclean:: clean
 doc docs-install::
 	$(MAKE) $(MFLAGS) -C doc $@
 
+uninstall::
+	$(MAKE) $(MFLAGS) -C boot $@
+	$(MAKE) $(MFLAGS) -C util $@
+
 
 #  API generation support using Doxygen
 #
