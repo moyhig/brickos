@@ -90,7 +90,7 @@ CWARN =-Wall
 CINC  =-I$(BRICKOS_ROOT)/include -I$(BRICKOS_ROOT)/include/lnp -I.
 
 CFLAGS=$(COPT) $(CWARN) $(CINC) $(CDEFINES)
-CXXFLAGS=-DCXX $(CFLAGS)
+CXXFLAGS=-DCXX -fno-exceptions $(CFLAGS)
 
 ##
 ## older options
