@@ -1,3 +1,8 @@
+2004-01-25  Henner Zeller <hzeller@users.sourceforge.net>
+
+  * add new form of new/delete operators (gcc-3.x caused this).
+  * disable c++ RTTI and Exception Handling via compile directives
+
 2004-01-25  Stephen M Moraco <stephmo@users.sourceforge.net>
 
   * Applied Patch: #747434 - configure now uses sh vs. bash
