@@ -8,8 +8,8 @@
 LIBTARGET = c++
 
 # sources 
-SOURCES = stub.c
-
+CSOURCES = stub.c
+CXXSOURCES=mem.cpp
 
 ##
 ## no user servicable parts below
@@ -17,7 +17,7 @@ SOURCES = stub.c
 
 LIBRARY   = lib$(LIBTARGET).a
 
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(CSOURCES:.c=.o) $(CXXSOURCES:.cpp=.o)
 
 
 all:: promote-stamp
@@ -28,13 +28,13 @@ promote-stamp: $(LIBRARY)
 	@touch $@
 
 include ../../Makefile.common
-	
+
 $(LIBRARY): $(OBJECTS)
 	rm -f $@
 	$(AR) -sq $@ $(OBJECTS)
 
-.depend: $(SOURCES)
-	$(MAKEDEPEND) $(SOURCES) > .depend
+.depend: $(CSOURCES) $(CXXSOURCES)
+	$(MAKEDEPEND) $(CSOURCES) $(CXXSOURCES) > .depend
 
 depend:: .depend
 	@# nothing to do here but do it silently
