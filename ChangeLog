@@ -2,6 +2,8 @@
 
   * Move Makefile.kernel into boot/Makefile (was only consumer)
   * Finish install targets, add uninstall target
+  * Generate & install installed forms of included and demo 
+    makefiles (generate by filtering existing then installing)
 
 2002-10-15  Stephen M Moraco <stephmo@users.sourceforge.net>
 
