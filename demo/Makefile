@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.7 2002/10/17 05:05:40 stephmo Exp $
 ###  FILE: demo/Makefile - make the C Language Demo Programs
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

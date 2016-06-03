@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.20 2004/02/17 01:39:07 stephmo Exp $
 ###  FILE: boot/Makefile - make the brickOS kernel
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

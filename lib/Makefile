@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.6 2002/10/17 04:30:45 stephmo Exp $
 ###  FILE: lib/Makefile - make the supporting libraries
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.9 2003/03/02 18:00:42 paolom Exp $
 ###  FILE: util/firmdl/Makefile - make firmware download utility
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

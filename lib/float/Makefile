@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.9 2003/01/11 12:30:53 emanlove Exp $
 ###  FILE: lib/float/Makefile - make the floating point math library
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.8 2003/01/11 12:31:15 emanlove Exp $
 ###  FILE: lib/mint/Makefile - make the integer math library
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

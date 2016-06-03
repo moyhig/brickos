@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile.common,v 1.23 2004/02/17 01:39:07 stephmo Exp $
 ###  FILE: Makefile.common - definitions common to most brickOS Makefiles
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

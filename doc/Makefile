@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile,v 1.9 2004/02/17 02:27:13 stephmo Exp $
 ###  FILE: doc/Makefile - build HTML documentation from SGML source
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------

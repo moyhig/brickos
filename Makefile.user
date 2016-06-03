@@ -1,5 +1,5 @@
 ### ==========================================================================
-###  $Id$
+###  $Id: Makefile.user,v 1.9 2003/02/14 05:48:49 stephmo Exp $
 ###  FILE: Makefile.user - support for building programs run under brickOS
 ###  brickOS - the independent LEGO Mindstorms OS
 ### --------------------------------------------------------------------------
