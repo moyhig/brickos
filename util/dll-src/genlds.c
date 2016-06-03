@@ -192,7 +192,7 @@ static void print_footer(FILE *f) {
   .stack : {\n\
     _stack = . ; \n\
     *(.stack)\n\
-  }  > topram\n\
+  }  > stack\n\
 \n\
   .eight 0xff00: {\n\
     *(.eight)\n\
