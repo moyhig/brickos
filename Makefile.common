@@ -41,14 +41,14 @@ pkglibdir = $(libdir)/${PACKAGE}
 #
 #  BEGIN-configuration insert (do not remove this line)
 # -------------------------------------------------------
-TOOLPREFIX=/usr/local/gnu/bin/h8300-hms-
+TOOLPREFIX=
 SED_SFLAG=
 EXT=
 CC=cc
 CFLAGS=-O2 -Wall
 MAKEDEPEND=$(CC) -M
-BRICKOS_ROOT=/Users/manabu/work.CNR/XS/RCX/sourceforge/brickos
-NQC_ROOT=/Users/manabu/work.CNR/XS/RCX/sourceforge/brickos/../nqc
+BRICKOS_ROOT=
+NQC_ROOT=
 # -------------------------------------------------------
 #  END-configuration insert  (do not remove this line)
 #
