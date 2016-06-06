@@ -1,3 +1,4 @@
+Makefile.common.bak
 .configured.flg
 *.o
 *.a
