@@ -8,6 +8,19 @@
 BUILDING_HOST_UTILS = true
 include ../../Makefile.common
 
+ifneq (,$(findstring $(OSTYPE),Darwin))
+	LDFLAGS   += -m32
+	CFLAGS    += -m32 -DNQC_RCXLIB -DUSE_TRANSPORT -I..
+	CXXFLAGS  += $(CFLAGS) -I$(NQC_ROOT)/rcxlib -I$(NQC_ROOT)/platform
+	LIBS      += -lstdc++
+	LIBS      += -Wl,-framework -Wl,IOKit -Wl,-framework -Wl,CoreFoundation
+	NQC_OBJS  += nqc_rcxlib.o \
+		$(NQC_ROOT)/rcxlib/RCX_USBTowerPipe_osx.o \
+		$(NQC_ROOT)/rcxlib/RCX_Pipe.o \
+		$(NQC_ROOT)/rcxlib/RCX_PipeTransport.o \
+		$(NQC_ROOT)/rcxlib/RCX_Transport.o
+endif
+
 FIRMDL3 = firmdl3$(EXT)
 MKIMG = mkimg$(EXT)
 MAN1 = firmdl3.1
@@ -20,11 +33,19 @@ all:: fastdl.h $(ALL_TARGETS)
 $(MKIMG): mkimg.o srec.o
 	$(CC) $^ -o $@ $(CFLAGS)
 
+ifneq (,$(findstring $(OSTYPE),Darwin))
+../$(FIRMDL3): firmdl.o srec.o rcx_comm.o $(NQC_OBJS)
+	$(CC) $^ -o $@ $(LDFLAGS) $(LIBS)
+else
 ../$(FIRMDL3): firmdl.o srec.o rcx_comm.o
 	$(CC) $^ -o $@ $(CFLAGS)
+endif
 
 fastdl.h: $(MKIMG) fastdl.srec
 	./$(MKIMG) fastdl.srec > $@
+
+nqc_rcxlib.o: ../nqc_rcxlib.cpp
+	$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 depend::
 	@# nothing to do here but do it silently

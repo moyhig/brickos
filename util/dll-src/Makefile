@@ -29,6 +29,17 @@ SINGLE_SRC_TARGETS = $(TARGET3) $(TARGET4)
 ALL_TARGETS        = $(TARGET1) $(TARGET2) $(SINGLE_SRC_TARGETS)
 LIBS=
 
+ifneq (,$(findstring $(OSTYPE),Darwin))
+	LDFLAGS   += -m32
+	CFLAGS    += -m32 -DNQC_RCXLIB -I..
+	CXXFLAGS  += $(CFLAGS) -I$(NQC_ROOT)/rcxlib -I$(NQC_ROOT)/platform
+	LIBS      += -lstdc++
+	LIBS      += -Wl,-framework -Wl,IOKit -Wl,-framework -Wl,CoreFoundation
+	OBJS1     += nqc_rcxlib.o \
+		$(NQC_ROOT)/rcxlib/RCX_USBTowerPipe_osx.o \
+		$(NQC_ROOT)/rcxlib/RCX_Pipe.o
+endif
+
 #
 # Martin Cornelius solution to include problems (avoid -I/usr/include)
 #
@@ -81,6 +92,9 @@ $(TARGET2):  $(OBJS2)
 
 %.o: $(BRICKOS_ROOT)/kernel/%.c
 	$(CC) -o $@ -c $< $(CFLAGS)
+
+nqc_rcxlib.o: ../nqc_rcxlib.cpp
+	$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 ../%$(EXT): %.c
 	$(CC) -o $@ $< $(CFLAGS)

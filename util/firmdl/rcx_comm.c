@@ -110,6 +110,19 @@ static int nbread (FILEDESCR fd, void *buf, int maxlen, int timeout)
 
     while (len < maxlen) {
 
+#ifdef NQC_RCXLIB
+      {
+        int count = rcx_pipe_read(fd, &bufp[len], maxlen - len, timeout);
+
+        if (count == 0) {
+         if (__comm_debug)
+           printf("Serial mode: nbread(len=%d, maxlen=%d) break...timed out\n", len, maxlen);
+         break;
+       }
+
+        len +=count;
+      }
+#else
 #if defined(_WIN32)
       if(tty_usb) {
 	  // USB Stuff here
@@ -205,6 +218,7 @@ static int nbread (FILEDESCR fd, void *buf, int maxlen, int timeout)
 
         len += count;
 #endif
+#endif /* NQC_RCXLIB */
 
     }
 
@@ -228,6 +242,9 @@ static void rx_flush(FILEDESCR fd)
 }
 
 int mywrite(FILEDESCR fd, const void *buf, size_t len) {
+#ifdef NQC_RCXLIB
+    return rcx_pipe_write(fd, buf, len);
+#else
 #if defined(_WIN32)
     DWORD nBytesWritten=0;
     WriteFile(fd, buf, len, &nBytesWritten, NULL);
@@ -259,6 +276,7 @@ int mywrite(FILEDESCR fd, const void *buf, size_t len) {
    }
    return len;
 #endif
+#endif /* NQC_RCXLIB */
 }
 
 /* RCX routines */
@@ -267,6 +285,9 @@ FILEDESCR rcx_init(char *tty, int is_fast)
 {
     FILEDESCR fd;
 
+#ifdef NQC_RCXLIB
+    fd = rcx_pipe_init();
+#else
 #if defined(_WIN32)
     DCB dcb;
 #else
@@ -339,17 +360,22 @@ FILEDESCR rcx_init(char *tty, int is_fast)
 	    }
     }
 #endif
+#endif /* NQC_RCXLIB */
 
     return fd;
 }
 
 void rcx_close(FILEDESCR fd)
 {
+#ifdef NQC_RCXLIB
+    rcx_pipe_close(fd);
+#else
 #if defined(_WIN32)
     CloseHandle(fd);
 #else
     close(fd);
 #endif
+#endif /* NQC_RCXLIB */
 }
 
 int rcx_wakeup_tower (FILEDESCR fd, int timeout)

@@ -218,6 +218,10 @@ int srec_load (char *name, unsigned char *image, int maxlen, unsigned short *sta
     return length;
 }
 
+#if defined(NQC_RCXLIB) && defined(USE_TRANSPORT)
+#define rcx_sendrecv rcx_pipe_send
+#endif
+
 void image_dl(FILEDESCR fd, unsigned char *image, int len, unsigned short start,
 	      int use_comp, char *filename)
 {
@@ -411,6 +415,12 @@ int main (int argc, char **argv)
     if (!tty)
 	tty = DEFAULTTTY;
 
+#ifdef NQC_RCXLIB
+    tty_usb=1;
+    if (__comm_debug) {
+      fprintf(stderr, "USB IR Tower Mode by NQC RCXLIB.\n");
+    }
+#else
 #if defined(_WIN32)
     //Check the command line to see if IR tower is USB.
     if(stricmp(tty,"usb")==0)	{
@@ -431,7 +441,14 @@ int main (int argc, char **argv)
 	 fprintf(stderr, "P.C. Chan & Tyler Akins - USB IR Tower Mode for Linux.\n");
     }   
 #endif
+#endif /* NQC_RCXLIB */
 
+#ifdef NQC_RCXLIB
+    {
+      fd = rcx_init("short", 1);
+      image_dl(fd, image, image_len, image_start, 0, argv[0]);
+    }
+#else
     if (use_fast && (tty_usb==0)) { //For now, run USB only at 2400bps (slow mode).
 	/* Try to wake up the tower in fast mode */
 
@@ -504,6 +521,7 @@ int main (int argc, char **argv)
 
 	rcx_close(fd);
     }
+#endif /* NQC_RCXLIB */
 
     return 0;
 }

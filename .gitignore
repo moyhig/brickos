@@ -1,0 +1,17 @@
+.configured.flg
+*.o
+*.a
+*.lx
+.depend
+*-stamp
+boot/brickOS.coff
+boot/brickOS.lds
+boot/brickOS.srec
+util/dll
+util/firmdl/fastdl.h
+util/firmdl/mkimg
+util/firmdl3
+util/fixdeps
+util/fontdesign
+util/genlds
+util/makelx

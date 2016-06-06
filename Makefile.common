@@ -41,16 +41,19 @@ pkglibdir = $(libdir)/${PACKAGE}
 #
 #  BEGIN-configuration insert (do not remove this line)
 # -------------------------------------------------------
-TOOLPREFIX=
+TOOLPREFIX=/usr/local/gnu/bin/h8300-hms-
 SED_SFLAG=
 EXT=
 CC=cc
 CFLAGS=-O2 -Wall
 MAKEDEPEND=$(CC) -M
-BRICKOS_ROOT=
+BRICKOS_ROOT=/Users/manabu/work.CNR/XS/RCX/sourceforge/brickos
+NQC_ROOT=/Users/manabu/work.CNR/XS/RCX/sourceforge/brickos/../nqc
 # -------------------------------------------------------
 #  END-configuration insert  (do not remove this line)
 #
+
+OSTYPE := $(strip $(shell uname -s))
 
 #
 #  test to ensure that user has run configure before building
@@ -75,6 +78,10 @@ ifdef BUILDING_HOST_UTILS
 #   defines for build of native compiled utilities
 # ----------------------------------------------------------------------------
 
+ifneq (,$(strip $(findstring $(OSTYPE), Darwin)))
+  # Mac OSX
+  CC+=-std=gnu89
+endif
 CFLAGS+=-O2 -Wall
 
 else  # ifndef BUILDING_HOST_UTILS

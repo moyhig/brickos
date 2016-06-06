@@ -27,6 +27,11 @@
 #ifndef __rcxtty_h__
 #define __rcxtty_h__
 
+#ifdef NQC_RCXLIB
+  #include "nqc_rcxlib.h"
+  #define FILEDESCR    void *
+  #define BADFILE      -1
+#else
 #if defined(_WIN32)
   #define FILEDESCR	HANDLE
   #define BADFILE	NULL
@@ -34,6 +39,7 @@
   #define FILEDESCR	int
   #define BADFILE	-1
 #endif
+#endif /* NQC_RCXLIB */
 
 // port settings
 //

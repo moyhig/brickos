@@ -71,6 +71,9 @@ void myperror(char *str) {
 }
 
 int mywrite(FILEDESCR fd, const void *buf, size_t len) {
+#ifdef NQC_RCXLIB
+    return rcx_pipe_write(fd ,buf, len);
+#else
 #if defined(_WIN32)
     DWORD nBytesWritten=0;
     if (WriteFile(fd, buf, len, &nBytesWritten, NULL))
@@ -104,6 +107,7 @@ int mywrite(FILEDESCR fd, const void *buf, size_t len) {
    }
    return len;
 #endif
+#endif /* NQC_RCXLIB */
 }
 
 //! initialize RCX communications port
@@ -124,6 +128,9 @@ int rcxInit(const char *tty, int highspeed)
  *  10/3/98
  */
 
+#ifdef NQC_RCXLIB
+  rcxFd = rcx_pipe_init();
+#else
 //  char		*tty;
   FILEDESCR	fd;
 
@@ -212,6 +219,7 @@ int rcxInit(const char *tty, int highspeed)
   }
   rcxFd=fd;
 #endif
+#endif /* NQC_RCXLIB */
 
   return 0;
 }
@@ -219,11 +227,15 @@ int rcxInit(const char *tty, int highspeed)
 //! shutdown RCX communications port
 void rcxShutdown()
 {
+#ifdef NQC_RCXLIB
+    rcx_pipe_close(rcxFd);
+#else
   #if defined(_WIN32)
     CloseHandle(rcxFd);
   #else
     close(rcxFd);
   #endif
+#endif /* NQC_RCXLIB */
 
   rcxFd=BADFILE;
 }

@@ -35,6 +35,9 @@
 #if defined(_WIN32)
   #define FILEDESCR	HANDLE
   #define BADFILE	NULL
+#elif defined(NQC_RCXLIB)
+  #include "nqc_rcxlib.h"
+  #define FILEDESCR    void *
 #else
   #define FILEDESCR	int
   #define BADFILE	-1

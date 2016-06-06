@@ -30,6 +30,7 @@ echo ""
 #
 #   known PATHs in which h8*gcc may be found
 TOOL_PATH="/usr/local/bin
+           /usr/local/gnu/bin
            /usr/bin
            /usr/h8300-hitachi-hms/bin
            /usr/local/crossgcc/h8300-hitachi-hms/bin"
@@ -124,6 +125,7 @@ echo ""
 
 MAKEDEPEND="\$(CC) -M"
 BRICKOS_ROOT=`pwd`
+NQC_ROOT=`pwd`/../nqc
 
 CURR_MAKEFILE=Makefile.common
 NEW_MAKEFILE=${CURR_MAKEFILE}.new
@@ -136,6 +138,7 @@ cat $CURR_MAKEFILE | awk -v sedFlag=$SED_FLAG \
 						  -v toolPrefix="$TOOLPREFIX" \
 						  -v mkdep="$MAKEDEPEND" \
 						  -v brickosRoot=$BRICKOS_ROOT \
+						  -v nqcRoot=$NQC_ROOT \
 						  -v cflgPleq=$CFLG_PE \
 						  '
 						  BEGIN {
@@ -152,6 +155,7 @@ cat $CURR_MAKEFILE | awk -v sedFlag=$SED_FLAG \
 							print "CFLAGS" cflgPleq "=" cflags
 							print "MAKEDEPEND=" mkdep
 							print "BRICKOS_ROOT=" brickosRoot
+							print "NQC_ROOT=" nqcRoot
 							print sep
 						  }
 						  (inInsert) {

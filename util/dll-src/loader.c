@@ -154,6 +154,10 @@ int tty_usb=0;
 int pdelete_flag=0;
 int hostaddr_flag=0;
 
+#ifdef NQC_RCXLIB
+static unsigned char lnp_headding_byte = 0;
+#endif
+
 void io_handler(void);
 
 /*! blocking I/R write.
@@ -161,6 +165,7 @@ void io_handler(void);
  */
 int lnp_logical_write(const void *data, size_t length) {
 
+#ifndef NQC_RCXLIB
 // With Win32 we are using Blocking Write by default
 #if !defined(_WIN32)
   fd_set fds;
@@ -179,6 +184,7 @@ int lnp_logical_write(const void *data, size_t length) {
    if (tty_usb == 0)
 #endif
   keepaliveRenew();
+#endif /* NQC_RCXLIB */
 
   return mywrite(rcxFD(), data, length)!=length;
 }
@@ -202,7 +208,7 @@ int lnp_assured_write(const unsigned char *data, unsigned char length,
     elapsed=0;
 
     do {
-#if defined(_WIN32)
+#if defined(_WIN32) || defined(NQC_RCXLIB)
       io_handler();
 #else
       struct timeval tv;
@@ -258,6 +264,29 @@ void io_handler(void) {
         fprintf(stderr,"\n#time %lu ",diff);
       lnp_integrity_reset();
     }
+#ifdef NQC_RCXLIB
+    {
+      unsigned long total = REPLY_TIMEOUT+(long)sizeof(buffer)*BYTE_TIME;
+
+      len = rcx_pipe_read(rcxFD(), buffer, sizeof(buffer), total / 1000);
+
+      if(len > 0 && lnp_integrity_state == LNPwaitHeader) {
+        if (buffer[0] >= 0xf0) {
+          if (!lnp_headding_byte) {
+            lnp_headding_byte = buffer[0];
+            if(verbose_flag)
+              fprintf(stderr,"put [%02x] if headding byte is absorbed\n", lnp_headding_byte);
+          }
+        } else {
+          /* headding byte is absorbed */
+          unsigned char lhb = (lnp_headding_byte ? lnp_headding_byte : 0xf1);
+          lnp_integrity_byte(lhb);
+          if(verbose_flag)
+            fprintf(stderr,"[%02x] ", lhb);
+        }
+      }
+    }
+#else
 #if defined(_WIN32)
     // Remember, USB support only in WIN32 environments.
     if (tty_usb == 0) {
@@ -280,6 +309,7 @@ void io_handler(void) {
 #else
     len=read(rcxFD(),buffer,sizeof(buffer));
 #endif
+#endif /* NQC_RCXLIB */
     for(i=0; i<len; i++) {
       if(verbose_flag)
         fprintf(stderr,"%02x ",buffer[i]);
@@ -305,11 +335,14 @@ void LNPinit(const char *tty) {
   rcxInit(tty, 0);
 #endif
 
+#ifndef NQC_RCXLIB
   if (rcxFD() == BADFILE) {
     myperror("opening tty");
     exit(1);
   }
+#endif
 
+#ifndef NQC_RCXLIB
 #if defined(LINUX) || defined(linux)
   if (tty_usb == 0) {
 #endif
@@ -337,6 +370,7 @@ void LNPinit(const char *tty) {
 #endif
   read(rcxFD(),buffer,256);
 #endif
+#endif /* !NQC_RCXLIB */
 }
     
 void ahandler(const unsigned char *data,unsigned char len,unsigned char src) {
@@ -489,6 +523,9 @@ int main(int argc, char **argv) {
   if (!tty) tty = DEFAULTTTY;
 
   // Check if USB IR tower is selected.
+#ifdef NQC_RCXLIB
+  tty_usb = 1;
+#else
 #if defined(_WIN32)
   if (stricmp(tty, "usb")==0) {
 	tty_usb = 1;
@@ -507,6 +544,7 @@ int main(int argc, char **argv) {
           fputs("\nC.P. Chan & Tyler Akins - USB IR Tower Mode for Linux.\n",stderr);
    }
 #endif
+#endif /* NQC_RCXLIB */
 
   LNPinit(tty);
 
