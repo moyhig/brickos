@@ -1,4 +1,0 @@
-[submodule "xs"]
-	path = xs
-	url = https://github.com/moyhig/xs.git
-	branch = brickos-0.9.0
